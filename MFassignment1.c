@@ -11,7 +11,6 @@ float xyz45Sort[45][3];
 
 void append()
 {
-	printf("append\n");
 	int i,j;
 	for (i=0; i<25; i++)
 	{
@@ -28,14 +27,16 @@ void append()
 		}
 	}
 	
-//	for(i=0; i<45; i++) {
-//      for(j=0;j<3;j++) {
-//         printf("%f ", xyz45[i][j]);
-//         if(j==2){
-//            printf("\n");
-//         }
-//      }
-//   }
+	printf("\ntotal 45 values ready for equation\n");
+	for(i=0; i<45; i++) {
+		printf("%d.. ", i);
+      for(j=0;j<3;j++) {
+         printf("%f ", xyz45[i][j]);
+         if(j==2){
+            printf("\n");
+         }
+      }
+   }
 	
 }
 
@@ -51,11 +52,8 @@ void solve()
 	for(i=0; i<45; i++)
 	{
 		float x=xyz45[i][0];
-	//	printf("x=%f\n", x);
 		float y=xyz45[i][1];
-	//	printf("y=%f\n", y);
 		float z=xyz45[i][2];
-	//	printf("z=%f\n", z);
 		finalAns[i] = pow(x,2) - 2*x*y*pow(z,2) + 2*pow(y,2)*z - 5.7*x*y*z + pow(z,2);
 	}
 	for(i=0; i<45; i++)
@@ -77,20 +75,21 @@ for (c = 0 ; c < 45 - 1; c++)
         finalAnsSort[d]   = finalAnsSort[d+1];
         finalAnsSort[d+1] = t;
       }
-    }
+    }	
   }
-  printf("final ans\n");
+  printf("\nfinal answer\n");
 	for(i = 0; i < 45; i++)
       printf("%d.. %f,\n ",i, finalAns[i]);
       int j;
 	
-	printf("final ans sort\n");
+	printf("\nfinal answer sorted\n");
 	for(i = 0; i < 45; i++)
       printf("%d.. %f, \n",i, finalAnsSort[i]);
       
-      printf("before\n");
+      printf("\nPopulation before Sorting\n");
       
       for(i=0; i<45; i++) {
+      	printf("%d.. ", i);
       for(j=0;j<3;j++) {
       	printf("%d.. ", i);
          printf("%f ", xyz45[i][j]);
@@ -99,10 +98,10 @@ for (c = 0 ; c < 45 - 1; c++)
          }
       }
    }
-      printf("\nafter===============================================================================\n");
+      printf("\nPopulation after Sorting\n");
       float temp;
     for(i = 0; i < 45; i++)
-    {//	printf("\ni%d\n", i);
+    {
     	for(j = 0; j < 45; j++)
     	{//	printf("\nj%d\n", j);
     		if(finalAnsSort[i]==finalAns[j])
@@ -115,24 +114,10 @@ for (c = 0 ; c < 45 - 1; c++)
         
 
 			}
-			else
-			{
-				int s;	
-			}
 			
 		}
 	}
 	
-//	for(i=0; i<45; i++) {
-//      for(j=0;j<3;j++) {
-//      	printf("%d.. ", i);
-//         printf("%f ", xyz45Sort[i][j]);
-//         if(j==2){
-//            printf("\n");
-//         }
-//      }
-//   }
-   
    for (i=0; i<45; i++)
 	{
 		for(j=0; j<3; j++)
@@ -142,6 +127,7 @@ for (c = 0 ; c < 45 - 1; c++)
 	}
 	
 	for(i=0; i<45; i++) {
+		printf("%d.. ", i);
       for(j=0;j<3;j++) {
       	printf("%d.. ", i);
          printf("%f ", xyz45[i][j]);
@@ -154,7 +140,6 @@ for (c = 0 ; c < 45 - 1; c++)
 
 void initPop()
 {
-	printf("int pop\n");
 	int count = 25; 
 	int i; 
 	float num;
@@ -175,18 +160,19 @@ void initPop()
 	
 	int j;
 	
-//	for(i=0; i<25; i++) {
-//      for(j=0;j<3;j++) {
-//         printf("%f ", xyz[i][j]);
-//         if(j==2){
-//            printf("\n");
-//         }
-//      }
-//   }
+	printf("\nInitial Population:\n");
+	for(i=0; i<25; i++) {
+		printf("%d.. ", i);
+      for(j=0;j<3;j++) {
+         printf("%f ", xyz[i][j]);
+         if(j==2){
+            printf("\n");
+         }
+      }
+   }
 }
 
 void crossOver(){
-	printf("cross\n");
 		//	rand() % (max_number + 1 - minimum_number) + minimum_number
 	int history1[10]={0,0,0,0,0,0,0,0,0,0};
 	int history2[10]={0,0,0,0,0,0,0,0,0,0};
@@ -195,13 +181,11 @@ void crossOver(){
 	int chk=0;
 		srand(time(0));
 	for(i=0; i<10; i++)
-	{
-		printf("%d\n", i);
-	
+	{	
 	int p1 = rand() % (24 + 1 - 0) + 0;
-//	printf("p1 %d\n", p1);
+	printf("\np1-%d ", p1);
 	int p2 = rand() % (24 + 1 - 0) + 0;
-//	printf("p2 %d\n", p2);
+	printf("p2-%d\n", p2);
 	if(p1==p2)
 	{
 		i--;
@@ -211,8 +195,7 @@ void crossOver(){
 	{
 		if(history1[j]==p1 && history2[j]==p2 || history1[j]==p2 && history2[j]==p1)
 		{
-			printf("in if(history1[j]==p1 && history2[j]==p2 || history1[j]==p2 && history2[j]==p1)\n");
-			
+
 			chk =1;
 			break;
 		}
@@ -220,7 +203,6 @@ void crossOver(){
 	}
 	if(chk ==1)
 	{
-		printf("in if(chk ==1)\n");
 		i--;
 		continue;
 	}
@@ -242,14 +224,17 @@ void crossOver(){
 	}
 	
 	printf("\n\n");
-//	for(i=0; i<20; i++) {
-//      for(j=0;j<3;j++) {
-//         printf("%f ", xyzC[i][j]);
-//         if(j==2){
-//            printf("\n");
-//         }
-//      }
-//   }
+	
+	printf("\nCrossover\n");
+	for(i=0; i<20; i++) {
+		printf("%d.. ", i);
+      for(j=0;j<3;j++) {
+         printf("%f ", xyzC[i][j]);
+         if(j==2){
+            printf("\n");
+         }
+      }
+   }
 	
 	
 }
@@ -276,6 +261,18 @@ void mutation(){
 	}	
 	}
 	
+		printf("\nMutation\n");
+		int i,j;
+	for(i=0; i<20; i++) {
+		printf("%d.. ", i);
+      for(j=0;j<3;j++) {
+         printf("%f ", xyzC[i][j]);
+         if(j==2){
+            printf("\n");
+         }
+      }
+   }
+	
 	append();
 	
 }
@@ -287,7 +284,7 @@ int main()
 	
 	initPop();
 	int i;
-	for(i=0; i<25; i++)
+	for(i=0; i<1; i++)
 	{
 		crossOver();
 	mutation();
